@@ -12,13 +12,11 @@
 
 ## Tasks
 
-- Plymouth (does it work?)
-    - Extract theme into configuration?
+- Extract plymouth theme into configuration?
 - Scripts to nix
-- Disko
 - Impermanence
 - Gaming
     - [x] Run steam
     - Game mode (https://github.com/FeralInteractive/gamemode)?
     - custom/gaming kernel: linux_xanmod is the recommended one for games, since it provides many patches that aid wine and other games. It also provides a better desktop experience due to its preemptive build and tickless scheduler.
-- Emg web (prisma)
+- Good documentation on this system
