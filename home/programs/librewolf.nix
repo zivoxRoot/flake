@@ -123,4 +123,6 @@
       "dom.battery.enabled" = false;
     };
   };
+
+    stylix.targets.librewolf.profileNames = [ "default" ];
 }
