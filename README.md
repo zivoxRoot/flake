@@ -1,12 +1,19 @@
 # Flake
 
+## Installation
+
+- Boot a NixOS live USB
+- Connect to the internet
+- Clone your repository
+- Retrieve the age identity from your backup USB
+- Verify the correct target disk
+- Run the Disko installation workflow
+- Reboot and verify the system, desktop, and decrypted secrets
+
 ## Tasks
 
 - Plymouth (does it work?)
     - Extract theme into configuration?
-- Secrets
-    - User password in config
-    - SSH key?
 - Scripts to nix
 - Disko
 - Impermanence

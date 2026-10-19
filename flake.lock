@@ -68,23 +68,23 @@
         "type": "github"
       }
     },
-    "claude-desktop": {
+    "disko": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1792186679,
-        "narHash": "sha256-D/b7Z2dIIYvq+cx/8Ugl8y47BMD0x1z1ONHv2l9mXD4=",
-        "owner": "tomsch",
-        "repo": "claude-desktop-nix",
-        "rev": "9bf2487394875a09efe8db1b55b6bee0fca30ec1",
+        "lastModified": 1789770686,
+        "narHash": "sha256-uZkBR7yHdIKUFB5SZdfgh1qkGfI3XmYmI/lTiquxbck=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "725ea35e410ad83be4931d1bff7e090eacaf3563",
         "type": "github"
       },
       "original": {
-        "owner": "tomsch",
-        "repo": "claude-desktop-nix",
+        "owner": "nix-community",
+        "repo": "disko",
         "type": "github"
       }
     },
@@ -243,7 +243,7 @@
     },
     "root": {
       "inputs": {
-        "claude-desktop": "claude-desktop",
+        "disko": "disko",
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",

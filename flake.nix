@@ -19,15 +19,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    claude-desktop = {
-      url = "github:tomsch/claude-desktop-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
 	sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+	disko = {
+		url = "github:nix-community/disko";
+		inputs.nixpkgs.follows = "nixpkgs";
+	};
   };
 
   outputs =
@@ -36,8 +36,8 @@
       nixpkgs,
       home-manager,
       stylix,
-      claude-desktop,
 	  sops-nix,
+	  disko,
       ...
     }@inputs:
     let
@@ -51,10 +51,10 @@
           inherit vars;
         };
         modules = [
-          { environment.systemPackages = [ claude-desktop.packages.x86_64-linux.default ]; }
           stylix.nixosModules.stylix
 		  sops-nix.nixosModules.sops
-          ./hosts/thinkpad-t470/default.nix
+		  inputs.disko.nixosModules.disko
+          ./hosts/laptop/default.nix
 
           home-manager.nixosModules.home-manager
           {

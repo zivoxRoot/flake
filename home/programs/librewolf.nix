@@ -43,7 +43,19 @@
                   bookmarks = [
                     {
                       name = "GitHub";
-                      url = "https://github.com";
+                      url = "https://github.com/Ecole-Mathias-Grunewald/emg-web";
+                    }
+                    {
+                      name = "Moodle 13e";
+                      url = "https://13eclasse.fr";
+                    }
+                    {
+                      name = "Dev platform";
+                      url = "localhost:3000";
+                    }
+                    {
+                      name = "Dev cursus";
+                      url = "localhost:3001";
                     }
                   ];
                 }

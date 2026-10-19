@@ -8,6 +8,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
 
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/usb.nix
