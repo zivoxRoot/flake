@@ -16,7 +16,7 @@ mkdir -p ~/.config/sops/age
 2. Generate a new key pair
 
 ```bash
-age-keygen -o ~/.config/sops/age
+age-keygen -o ~/.config/sops/age/keys.txt
 ```
 
 ## Sops usage
@@ -24,7 +24,7 @@ age-keygen -o ~/.config/sops/age
 Create a secrets.yaml file storing secrets that we will encrypt
 
 ```bash
-echo <<'EOF' > secrets.yaml
+cat <<'EOF' > secrets.yaml
 username: my-username
 password: this-is-a-fake-password
 ssh:
@@ -32,6 +32,8 @@ ssh:
   private_key: this-is-not-a-real-private-key
 EOF
 ```
+
+> The password put inside should be a hash: `mkpasswd -m yescrypt`
 
 1. Encrypt the secret file
 

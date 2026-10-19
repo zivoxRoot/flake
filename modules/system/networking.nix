@@ -1,8 +1,8 @@
-{ ... }:
+{ vars, ... }:
 
 {
   # Define your hostname
-  networking.hostName = "nixos";
+  networking.hostName = vars.hostname;
 
   # Enable networking
   networking.networkmanager.enable = true;

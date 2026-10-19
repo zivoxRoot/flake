@@ -1,7 +1,7 @@
 {
   disko.devices.disk.main = {
     type = "disk";
-    device = "/dev/disk/by-id/REPLACE_WITH_YOUR_SSD_ID";
+    device = "/dev/disk/by-id/ata-M.2_SATA_NGFF_1TB_WP4M1TB240810163";
 
     content = {
       type = "gpt";

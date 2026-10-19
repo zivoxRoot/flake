@@ -44,7 +44,7 @@
       vars = import ./variables.nix;
     in
     {
-      nixosConfigurations.${vars.username} = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${vars.hostname} = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs;
