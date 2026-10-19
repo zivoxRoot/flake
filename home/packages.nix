@@ -24,6 +24,8 @@
     nautilus
     satty
     imv
+    localsend
+    qbittorrent
 
     # CLI tools
     ffmpeg
