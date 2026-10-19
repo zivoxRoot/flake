@@ -13,6 +13,8 @@
   # nord one ayu
   # flexoki selenized papercolor
   # primer edge oxocarbon
+  bootAnimation = "lone";
+  # Possible themes: https://github.com/adi1090x/plymouth-themes
 
   # Do NOT touch
   stateVersion = "26.05";
