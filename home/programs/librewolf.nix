@@ -70,6 +70,10 @@
                       name = "My Nixos";
                       url = "https://mynixos.com";
                     }
+                    {
+                      name = "Nix map";
+                      url = "https://vimjoyer.com/nixmap";
+                    }
                   ];
                 }
                 {

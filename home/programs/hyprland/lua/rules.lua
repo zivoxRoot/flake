@@ -1,22 +1,22 @@
 local suppressMaximizeRule = hl.window_rule({
-    name  = "suppress-maximize-events",
-    match = { class = ".*" },
+	name  = "suppress-maximize-events",
+	match = { class = ".*" },
 
-    suppress_event = "maximize",
+	suppress_event = "maximize",
 })
 
 hl.window_rule({
-    name  = "fix-xwayland-drags",
-    match = {
-        class      = "^$",
-        title      = "^$",
-        xwayland   = true,
-        float      = true,
-        fullscreen = false,
-        pin        = false,
-    },
+	name  = "fix-xwayland-drags",
+	match = {
+		class      = "^$",
+		title      = "^$",
+		xwayland   = true,
+		float      = true,
+		fullscreen = false,
+		pin        = false,
+	},
 
-    no_focus = true,
+	no_focus = true,
 })
 
 -- Telegram in workspace 1
@@ -31,4 +31,17 @@ hl.window_rule({
 	name = "librewolf-workspace2",
 	match = { class = "librewolf"  },
 	workspace = 2,
+})
+
+-- Steam don't float
+hl.window_rule({
+	name = "fix-steam-float",
+	match = {
+		class = "steam",
+		initial_title = "Steam",
+		float = 1,
+	},
+
+	float = false,
+	maximize = true,
 })

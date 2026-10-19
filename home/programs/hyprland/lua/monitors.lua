@@ -18,7 +18,7 @@ hl.monitor({
 	output = "HDMI-A-2",
 	mode = "highres",
 	position = "auto-center-up",
-	scale = "1.0",
+	scale = "1.6",
 })
 
 -- Workspaces rules
