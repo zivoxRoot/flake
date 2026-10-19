@@ -56,6 +56,7 @@
     rustc
     rustup
     nixfmt
+    biome
 
     # Base commands
     tree
