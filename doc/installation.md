@@ -2,7 +2,7 @@
 
 ---
 
-# 1. Boot the NixOS ISO, get network, clone the (public) repo
+# 1. Boot the minimal NixOS ISO, get network with nmcli or iwctl, clone the (public) repo via HTTPS
 git clone https://github.com/zivoxroot/flake.git /tmp/flake && cd /tmp/flake
 
 # 2. Verify the device in hosts/laptop/disko.nix with lsblk, then partition.
@@ -11,17 +11,35 @@ sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-commu
   --mode destroy,format,mount --flake .#nixos
 
 # 3. Restore the sops age key into the persistent subvolume
+## 3a. Mount the USB key
+sudo mkdir /mnt/usb
+# find the right USB stick
+lsblk -f
+sudo mount /path/to/usb /mnt/usb
+
+## 3b. Copy the secret key
 sudo mkdir -p /mnt/persist/var/lib/sops-nix
 sudo cp <path-to>/key.txt /mnt/persist/var/lib/sops-nix/key.txt
 sudo chmod 700 /mnt/persist/var/lib/sops-nix
 sudo chmod 600 /mnt/persist/var/lib/sops-nix/key.txt
+# unmount the USB stick
+sudo umount /mnt/usb
 
 # 4. Install (root has no password by design)
 sudo nixos-install --no-root-passwd --flake .#nixos
 
-# 5. Reboot, log in, then
-git clone https://github.com/zivoxroot/flake.git ~/flake
+# 5. Reboot, log in, then clone the repo via SSH
+git clone git@github.com:zivoxRoot/flake.git ~/flake
 # restore data from backup into ~ (persisted dirs only)
+
+# Postinstall checks
+
+- Browser
+    - Log in all bookmarked websites (github, mail, AI providers...)
+    - Enable extensions, pin and unpin as necessary
+- Steam: connect
+- Claude Code: connect
+- Syncthing: link to phone and sync
 
 ---
 
