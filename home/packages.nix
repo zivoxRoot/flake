@@ -42,6 +42,8 @@
     age
     vm-curator
     caligula
+    openssl
+    gh
 
     # Programming
     vim
