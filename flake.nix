@@ -19,15 +19,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-	sops-nix = {
+    sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-	disko = {
-		url = "github:nix-community/disko";
-		inputs.nixpkgs.follows = "nixpkgs";
-	};
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -36,8 +41,9 @@
       nixpkgs,
       home-manager,
       stylix,
-	  sops-nix,
-	  disko,
+      sops-nix,
+      disko,
+      impermanence,
       ...
     }@inputs:
     let
@@ -52,8 +58,9 @@
         };
         modules = [
           stylix.nixosModules.stylix
-		  sops-nix.nixosModules.sops
-		  inputs.disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          inputs.disko.nixosModules.disko
+          inputs.impermanence.nixosModules.impermanence
           ./hosts/laptop/default.nix
 
           home-manager.nixosModules.home-manager

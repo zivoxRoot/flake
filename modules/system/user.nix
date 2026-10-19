@@ -1,6 +1,8 @@
 { config, vars, ... }:
 
 {
+  users.mutableUsers = false;
+
   users.users.${vars.username} = {
     isNormalUser = true;
     description = vars.username;
@@ -9,7 +11,7 @@
       "wheel"
       "docker"
     ];
-	hashedPasswordFile = config.sops.secrets.password.path;
+    hashedPasswordFile = config.sops.secrets.password.path;
   };
 
   environment.variables.EDITOR = "vim";

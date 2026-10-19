@@ -38,13 +38,13 @@
     whisper-cpp
     sops
     age
-	vm-curator
-	caligula
+    vm-curator
+    caligula
 
     # Programming
     vim
     tmux
-	claude-code
+    claude-code
     devcontainer
     python315
     nodejs

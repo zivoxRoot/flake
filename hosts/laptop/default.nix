@@ -31,6 +31,7 @@
     ../../modules/system/user.nix
     ../../modules/system/keyring.nix
     ../../modules/system/secrets.nix
+    ../../modules/system/impermanence.nix
   ];
 
   system.stateVersion = vars.stateVersion;
