@@ -50,6 +50,10 @@
                       url = "https://13eclasse.fr";
                     }
                     {
+                      name = "Mail EMG";
+                      url = "https://ecole-mathias-grunewald.org:2096";
+                    }
+                    {
                       name = "Dev platform";
                       url = "localhost:3000";
                     }
@@ -63,7 +67,7 @@
                   name = "Nix";
                   bookmarks = [
                     {
-                      name = "NixOS Search";
+                      name = "Nixpkgs";
                       url = "https://search.nixos.org/packages";
                     }
                     {
@@ -124,5 +128,5 @@
     };
   };
 
-    stylix.targets.librewolf.profileNames = [ "default" ];
+  stylix.targets.librewolf.profileNames = [ "default" ];
 }
