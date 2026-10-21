@@ -26,6 +26,7 @@
     imv
     localsend
     qbittorrent
+    google-chrome
 
     # CLI tools
     ffmpeg
@@ -44,6 +45,7 @@
     caligula
     openssl
     gh
+    jq
 
     # Programming
     vim
