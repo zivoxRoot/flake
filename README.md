@@ -1,10 +1,15 @@
 # Flake
 
-## Tasks
+> Use [this editor](https://readme.so/editor)
 
-- Scripts to nix
-- Gaming
-    - [x] Run steam
-    - Game mode (https://github.com/FeralInteractive/gamemode)?
-    - custom/gaming kernel: linux_xanmod is the recommended one for games, since it provides many patches that aid wine and other games. It also provides a better desktop experience due to its preemptive build and tickless scheduler.
-- Good documentation on this system
+- a TOC
+- A one-line pitch.
+- A screenshot or video, ideally a short GIF/MP4 of the theme toggle or desktop.
+    - A mp4 video then a gallery of 6 screenshots
+        - expandable ?
+    - create an /assets folder
+- A bullet **Features** list where each bullet links to a doc (Declarative disks via disko, Ephemeral root, Encrypted secrets, Runtime light/dark switching...).
+    - with icons
+- A quick start of three commands.
+    - even possible?
+- A "Documentation" link list to `docs/*`.

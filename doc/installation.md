@@ -1,195 +1,161 @@
-# Reinstall from scratch
+# Installation
 
----
+This page covers the installation process for this nixos config. It lists the
+steps to take before reinstalling or deleting a working install, then the
+installation process itself.
 
-# 1. Boot the minimal NixOS ISO, get network with nmcli or iwctl, clone the (public) repo via HTTPS
+## What I need
+
+- USB disk with **Minimal installer** or **Graphical installer** NixOS ISO
+- The **age private key** on another USB key or as text backup
+- Network access
+- This repo as a public URL clonable via https
+
+## Before deleting an installation
+
+Before deleting a working installation to reinstall it on the same laptop or
+another one, follow these steps to make sure nothing is missed:
+
+- everything in the **What I need** section is met: USB disk with ISO, USB
+disk with **age private key**...
+- all your data is backed up to be retrieved after the reinstallation
+
+## Installation
+
+### Overview
+
+```mermaid
+flowchart TD
+    A[Boot and get internet]
+    A --> B[Clone repository]
+    B --> C[Verify disk setup] --> D{Disk ID matches, same hardware?}
+    D -->|Yes| E[Partition the disks]
+    D -->|No| F[Update config]
+    E --> G[Restore SOPS private key]
+    F --> E
+    G --> H[Install nixos configuration]
+    H --> I[Reboot and log in]
+    I --> J[Clone repo again and post-install]
+```
+
+### 1. Boot with the minimal NixOS ISO and get network access
+
+On the **Graphical installer** open a terminal and use `nmcli`:
+
+```bash
+nmcli device wifi list
+nmcli device wifi connect <SSID> password <PASSWORD>
+```
+
+Verify the connection works:
+
+```bash
+ping -c1 nixos.org >/dev/null && echo "Connected!" || "No connection"
+```
+
+### 2. Clone the config's repository via HTTPS
+
+```bash
 git clone https://github.com/zivoxroot/flake.git /tmp/flake && cd /tmp/flake
+```
 
-# 2. Verify the device in hosts/laptop/disko.nix with lsblk, then partition.
-#    THIS DESTROYS THE DISK.
-sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/disko/latest -- \
-  --mode destroy,format,mount --flake .#nixos
+### 3. First verify the target device for installation:
 
-# 3. Restore the sops age key into the persistent subvolume
-## 3a. Mount the USB key
-sudo mkdir /mnt/usb
-# find the right USB stick
+```bash
+lsblk -o NAME,SIZE,MODEL,TRAN
+```
+
+The path disk from these two commands should be the same:
+
+```bash
+ls -l /dev/disk/by-id/ | grep -v part
+grep "device =" hosts/laptop/disko.nix  # Take the line pointing to the right device
+```
+
+The paths will be different if you install on a new machine, if so:
+
+```bash
+nixos-generate-config --no-filesystems --show-hardware-config > hosts/laptop-hardware-configuration.nix
+```
+
+Copy the disk ID you got with `ls -l /dev/disk/by-id/ | grep -v part` and
+replace the line
+`device = "/dev/disk/by-id/ata-M.2_SATA_NGFF_1TB_WP4M1TB240810163";`'s ID with
+it
+
+### 4. Partition the disks
+
+```bash
+sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/disko/latest -- --mode destroy,format,mount --flake .#nixos
+```
+
+### 5. Restore the sops age key into the persistent subvolume
+
+From the USB key backup:
+
+```bash
+# Find the right USB stick
 lsblk -f
+# Mount it
+sudo mkdir /mnt/usb
 sudo mount /path/to/usb /mnt/usb
 
-## 3b. Copy the secret key
+# Copy the secret key
 sudo mkdir -p /mnt/persist/var/lib/sops-nix
-sudo cp <path-to>/key.txt /mnt/persist/var/lib/sops-nix/key.txt
+sudo cp /mnt/usb/key.txt /mnt/persist/var/lib/sops-nix/key.txt
 sudo chmod 700 /mnt/persist/var/lib/sops-nix
 sudo chmod 600 /mnt/persist/var/lib/sops-nix/key.txt
-# unmount the USB stick
+
+# Umount the USB
 sudo umount /mnt/usb
+```
 
-# 4. Install (root has no password by design)
+Or from text backup:
+
+```bash
+sudo mkdir -p /mnt/persist/var/lib/sops-nix
+sudo cat <<'EOF' > /mnt/persist/var/lib/sops-nix/key.txt
+<your-private-key>
+EOF
+sudo chmod 700 /mnt/persist/var/lib/sops-nix
+sudo chmod 600 /mnt/persist/var/lib/sops-nix/key.txt
+```
+
+### 6. Install
+
+```bash
 sudo nixos-install --no-root-passwd --flake .#nixos
+```
 
-# 5. Reboot, log in, then clone the repo via SSH
+### 7. Reboot and log in
+
+```bash
+sudo reboot now
+```
+
+> Don't forget to remove the installation USB key during reboot!
+
+### 8. Clone the repo at the right place via SSH
+
+> Cloning the repo once again adds Github's (or the repo's git forge's) SSH key
+> to the SSH host list, allowing you to then push your changes to the repo using
+> the copied SSH key (see [secrets management](./secrets.md))
+
+```bash
 git clone git@github.com:zivoxRoot/flake.git ~/flake
-# restore data from backup into ~ (persisted dirs only)
+```
 
-# Postinstall checks
+> If you changed anything during the installation (disk configuration for
+> example) apply these changes on the new copy and commit them
+
+## Post-installation
 
 - Browser
     - Log in all bookmarked websites (github, mail, AI providers...)
     - Enable extensions, pin and unpin as necessary
-- Steam: connect
-- Claude Code: connect
+- Telegram: login and set preferences
+- Steam: login and download favorite games
+- Claude Code: login
+- Github CLI (`gh`): login (`gh auth login`)
 - Syncthing: link to phone and sync
-
----
-
-> Generated by Claude
-
-Goal: wiped disk (or new machine) → my NixOS system from the public GitHub repo, with secrets decrypted on first boot.
-
-## What I need
-
-- USB stick with the **minimal** NixOS ISO (boot in UEFI mode)
-- The **age private key**: on the key USB, or from the text backup. Only the `AGE-SECRET-KEY-1...` line is required.
-- Network access
-- The repo URL: `https://github.com/<USER>/<REPO>.git` (public, no token needed)
-
-## How the setup works
-
-- **Disk**: `hosts/laptop/disko.nix` defines GPT with a 1G ESP (`/boot`) and ext4 root using the rest of the disk. The device is pinned by `/dev/disk/by-id/...`. Disko **wipes that whole disk**.
-- **Secrets**: `secrets/secrets.yaml` is encrypted for the age key listed in `.sops.yaml`. At activation, sops-nix reads the private key from `/var/lib/sops-nix/key.txt` and produces the user password hash and the SSH key pair.
-- **No key at `/var/lib/sops-nix/key.txt` = no password and no SSH key.** Place it before the first boot.
-- The flake output name is `$HOST` (`nixos`; use `theophile` if the output has not been renamed yet).
-
-```bash
-export HOST=nixos
-```
-
-## 1. Boot and network
-
-Boot the USB in UEFI mode (`ls /sys/firmware/efi` must exist). Wired networking works automatically. For Wi-Fi:
-
-```bash
-nmcli device wifi connect "SSID" --ask     # if nmcli exists
-# otherwise:
-sudo systemctl start wpa_supplicant
-wpa_cli
-> add_network
-> set_network 0 ssid "SSID"
-> set_network 0 psk "PASSWORD"
-> enable_network 0
-> quit
-```
-
-Check with `ping -c1 github.com`.
-
-## 2. Get the repo
-
-```bash
-export NIX_CONFIG="experimental-features = nix-command flakes"
-git clone https://github.com/<USER>/<REPO>.git ~/nixos
-cd ~/nixos
-```
-
-## 3. Stage the age key and check it
-
-From the key USB (use `lsblk -f` to find it; do not confuse it with the installer USB or the target disk):
-
-```bash
-sudo mkdir -p /tmp/usb && sudo mount /dev/sdX1 /tmp/usb
-install -m 600 /tmp/usb/path/to/keys.txt ~/keys.txt
-```
-
-Or from the text backup:
-
-```bash
-cat > ~/keys.txt        # paste the AGE-SECRET-KEY-1... line, Enter, Ctrl+D
-chmod 600 ~/keys.txt
-```
-
-Verify it before wiping anything:
-
-```bash
-nix shell nixpkgs#age nixpkgs#sops
-export SOPS_AGE_KEY_FILE=$HOME/keys.txt
-age-keygen -y "$SOPS_AGE_KEY_FILE"             # public key of this key file
-grep -o 'age1[a-z0-9]*' .sops.yaml | head -1   # must be identical to the line above
-sops decrypt secrets/secrets.yaml >/dev/null && echo DECRYPT_OK
-sops decrypt --extract '["password"]' secrets/secrets.yaml | head -c 4; echo   # expect $y$j (a hash)
-exit
-```
-
-Do not continue if any of these fail.
-
-## 4. Partition, format, mount (WIPES THE DISK)
-
-Confirm the target disk matches `device` in `hosts/laptop/disko.nix`:
-
-```bash
-lsblk -o NAME,SIZE,MODEL,TRAN
-ls -l /dev/disk/by-id/ | grep -v part
-grep device hosts/laptop/disko.nix
-```
-
-Then run disko:
-
-```bash
-sudo nix run github:nix-community/disko/latest -- --mode destroy,format,mount --flake ".#$HOST"
-findmnt /mnt /mnt/boot          # both must be mounted
-```
-
-## 5. Hardware config (only on a different machine or a VM)
-
-Same laptop: skip. Anything else:
-
-```bash
-nixos-generate-config --no-filesystems --show-hardware-config > hosts/laptop/hardware-configuration.nix
-git add -A      # flakes only see tracked files
-```
-
-## 6. Put the key on the target system
-
-```bash
-sudo install -D -m 600 -o root -g root ~/keys.txt /mnt/var/lib/sops-nix/key.txt
-sudo ls -l /mnt/var/lib/sops-nix/key.txt
-```
-
-## 7. Install
-
-```bash
-sudo nixos-install --flake ".#$HOST"
-```
-
-Set a root password when asked. Do **not** use `--no-root-passwd`: it is the fallback if user login fails. Then `sudo reboot` and remove both USBs.
-
-## 8. First boot checks
-
-Log in as `theophile` (TTY or greeter):
-
-```bash
-ls -l /run/secrets /run/secrets-for-users
-ls -l ~/.ssh                    # id_ed25519 and .pub symlinks
-journalctl -b | grep -i sops
-```
-
-## 9. Afterwards
-
-```bash
-git clone https://github.com/<USER>/<REPO>.git ~/nixos
-sudo install -D -m 600 -o $USER /var/lib/sops-nix/key.txt ~/.config/sops/age/keys.txt   # so `sops edit` works
-git -C ~/nixos remote set-url origin git@github.com:<USER>/<REPO>.git
-ssh -T git@github.com
-cd ~/nixos && sudo nixos-rebuild switch --flake .
-```
-
-Then restore personal data from backups.
-
-## Troubleshooting
-
-| Problem | What to do |
-|---|---|
-| Cannot log in as user | `Ctrl+Alt+F2`, log in as root. Check `journalctl -b \| grep -i sops`, that `/var/lib/sops-nix/key.txt` exists (root, 0600), and that the password in `secrets.yaml` is a hash |
-| sops: "no identity matched" | Wrong or missing key file. Redo step 3 and 6 |
-| Emergency shell at boot | Check `ls -l /dev/disk/by-partlabel/`: it must contain `disk-main-ESP` and `disk-main-root` |
-| "path ... is not tracked by Git" | `git add -A` in the repo |
-| Disko cannot find device | The `by-id` path in `disko.nix` does not match this machine |
+- Reinstall other data backups
