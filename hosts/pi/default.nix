@@ -16,6 +16,7 @@
     ../../modules/system/secrets.nix
 
     ../../modules/services/ssh.nix
+    ../../modules/services/tailscale.nix
   ];
 
   networking.hostName = vars.piHostname;

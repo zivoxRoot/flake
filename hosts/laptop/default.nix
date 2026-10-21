@@ -23,6 +23,7 @@
     ../../modules/services/ssh.nix
     ../../modules/services/syncthing.nix
     ../../modules/services/upower.nix
+    ../../modules/services/tailscale.nix
 
     ../../modules/system/boot.nix
     ../../modules/system/locale.nix

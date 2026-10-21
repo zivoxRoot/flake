@@ -21,6 +21,7 @@
 
   # PI
   piHostname = "pi";
+  piAddress = "pi";
 
   # Do NOT touch
   stateVersion = "26.05";
