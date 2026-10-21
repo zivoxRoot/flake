@@ -46,12 +46,32 @@
                       url = "https://github.com/Ecole-Mathias-Grunewald/emg-web";
                     }
                     {
+                      name = "Notion";
+                      url = "https://app.notion.com";
+                    }
+                    {
+                      name = "Mural";
+                      url = "https://app.mural.co";
+                    }
+                    {
+                      name = "FigJam";
+                      url = "https://www.figma.com";
+                    }
+                    {
                       name = "Moodle 13e";
                       url = "https://13eclasse.fr";
                     }
                     {
                       name = "Mail EMG";
                       url = "https://ecole-mathias-grunewald.org:2096";
+                    }
+                    {
+                      name = "Coolify";
+                      url = "https://coolify.zhkcloud.ovh";
+                    }
+                    {
+                      name = "Platform";
+                      url = "https://emg-platform.zhkcloud.ovh";
                     }
                     {
                       name = "Dev platform";
