@@ -1,7 +1,7 @@
 {
   disko.devices.disk.main = {
     type = "disk";
-    device = "/dev/disk/by-id/ata-M.2_SATA_NGFF_1TB_WP4M1TB240810163";
+    device = "/dev/disk/by-id/usb-Samsung_Portable_SSD_T5_1234567D92AC-0:0";
     content = {
       type = "gpt";
       partitions = {

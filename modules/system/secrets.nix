@@ -4,9 +4,6 @@
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
 
-    # Private key path
-    age.keyFile = "/persist/var/lib/sops-nix/key.txt";
-
     secrets = {
       password = {
         neededForUsers = true;

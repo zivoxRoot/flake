@@ -32,7 +32,11 @@
     ../../modules/system/keyring.nix
     ../../modules/system/secrets.nix
     ../../modules/system/impermanence.nix
+    ../../modules/system/binary-cache.nix
   ];
+
+  sops.age.keyFile = "/persist/var/lib/sops-nix/key.txt";
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   system.stateVersion = vars.stateVersion;
 }

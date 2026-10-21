@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  vars,
+  ...
+}:
 
 {
   boot.loader.systemd-boot.configurationLimit = 10;
@@ -8,6 +13,11 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+
+  nix.settings.trusted-users = [
+    "root"
+    vars.username
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

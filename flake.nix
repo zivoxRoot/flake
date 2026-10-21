@@ -1,6 +1,13 @@
 {
   description = "My flake";
 
+  nixConfig = {
+    extra-substituters = [ "https://nixos-raspberrypi.cachix.org" ];
+    extra-trusted-public-keys = [
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
@@ -33,6 +40,8 @@
       url = "github:nix-community/impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   };
 
   outputs =
@@ -44,6 +53,7 @@
       sops-nix,
       disko,
       impermanence,
+      nixos-raspberrypi,
       ...
     }@inputs:
     let
@@ -79,6 +89,20 @@
               backupFileExtension = "backup";
             };
           }
+        ];
+      };
+
+      nixosConfigurations.${vars.piHostname} = nixos-raspberrypi.lib.nixosSystem {
+        specialArgs = { inherit inputs nixos-raspberrypi vars; };
+        modules = [
+          sops-nix.nixosModules.sops
+          inputs.disko.nixosModules.disko
+          ({ nixos-raspberrypi, ... }: {
+            imports = with nixos-raspberrypi.nixosModules; [
+              raspberry-pi-5.base
+            ];
+          })
+          ./hosts/pi
         ];
       };
     };
