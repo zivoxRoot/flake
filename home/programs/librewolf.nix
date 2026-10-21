@@ -84,6 +84,15 @@
                   ];
                 }
                 {
+                  name = "Self hosted";
+                  bookmarks = [
+                    {
+                      name = "Tailscale";
+                      url = "https://console.tailscale.com/admin/machines";
+                    }
+                  ];
+                }
+                {
                   name = "Nix";
                   bookmarks = [
                     {
