@@ -95,6 +95,7 @@ in
           directory = ".gnupg";
           mode = "0700";
         }
+		".local/share/TelegramDesktop"
         ".local/share/keyrings"
         ".librewolf"
         ".config/syncthing"
