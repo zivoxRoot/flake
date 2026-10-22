@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, vars, ... }:
 
 {
   programs.librewolf = {
@@ -89,6 +89,10 @@
                     {
                       name = "Tailscale";
                       url = "https://console.tailscale.com/admin/machines";
+                    }
+                    {
+                      name = "Jellyfin";
+                      url = "http://${vars.piAddress}:8096";
                     }
                   ];
                 }

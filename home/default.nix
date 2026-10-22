@@ -8,6 +8,7 @@
 {
   imports = [
     ./packages.nix
+    ./pi-backup
 
     ./programs/hyprland
     ./programs/rofi
@@ -26,6 +27,8 @@
 
   home.username = vars.username;
   home.homeDirectory = "/home/${vars.username}";
+
+  my.piBackup.remote = "${vars.username}@${vars.piAddress}";
 
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";

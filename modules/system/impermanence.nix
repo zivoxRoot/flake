@@ -61,23 +61,23 @@ in
 
     directories = [
       "/var/log"
-      "/var/lib/nixos" # uid/gid maps, don't skip
+      "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/systemd/backlight"
-      "/etc/NetworkManager/system-connections" # wifi passwords
+      "/etc/NetworkManager/system-connections"
       "/var/lib/bluetooth"
       {
         directory = "/var/lib/private";
         mode = "0700";
-      } # DynamicUser state (ollama)
+      }
       {
         directory = "/var/cache/tuigreet";
         user = "greeter";
         group = "greeter";
         mode = "0755";
       }
-      "/var/lib/tailscale" # if the laptop runs tailscale
-      "/var/lib/docker" # if you use docker
+      "/var/lib/tailscale"
+      "/var/lib/docker"
     ];
 
     files = [
@@ -87,6 +87,7 @@ in
     users.${vars.username} = {
       directories = [
         "flake"
+        "backups"
         "Documents"
         "Downloads"
         "Pictures"
@@ -103,6 +104,7 @@ in
       files = [
         ".bash_history"
         ".ssh/known_hosts"
+		".local/state/backup-from-pi"
       ];
     };
   };

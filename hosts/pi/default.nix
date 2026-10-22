@@ -17,6 +17,9 @@
 
     ../../modules/services/ssh.nix
     ../../modules/services/tailscale.nix
+
+    ../../modules/server/jellyfin.nix
+	../../modules/server/backup-export.nix
   ];
 
   networking.hostName = vars.piHostname;
@@ -26,11 +29,15 @@
 
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
-  users.users.${vars.username}.openssh.authorizedKeys.keys = [ vars.sshPublicKey ];
+  users.users.${vars.username} = {
+    openssh.authorizedKeys.keys = [ vars.sshPublicKey ];
+    extraGroups = [ "media" ]; # For jellyfin
+  };
 
   environment.systemPackages = with pkgs; [
     vim
     tmux
     git
+	tree
   ];
 }
