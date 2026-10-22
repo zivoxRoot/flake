@@ -100,11 +100,11 @@ in
         ".config/syncthing"
         ".local/share/Steam"
         ".steam"
+		".local/state/backup-from-pi"
       ];
       files = [
         ".bash_history"
         ".ssh/known_hosts"
-		".local/state/backup-from-pi"
       ];
     };
   };

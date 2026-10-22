@@ -8,7 +8,7 @@
 {
   imports = [
     ./packages.nix
-    ./pi-backup
+	./scripts
 
     ./programs/hyprland
     ./programs/rofi
