@@ -1,4 +1,9 @@
-{ pkgs, inputs, vars, ... }:
+{
+  pkgs,
+  inputs,
+  vars,
+  ...
+}:
 
 {
   programs.librewolf = {

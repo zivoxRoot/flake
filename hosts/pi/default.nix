@@ -19,7 +19,7 @@
     ../../modules/services/tailscale.nix
 
     ../../modules/server/jellyfin.nix
-	../../modules/server/backup-export.nix
+    ../../modules/server/backup-export.nix
   ];
 
   networking.hostName = vars.piHostname;
@@ -38,6 +38,6 @@
     vim
     tmux
     git
-	tree
+    tree
   ];
 }

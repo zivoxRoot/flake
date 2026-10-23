@@ -1,14 +1,14 @@
-{pkgs,...}:
+{ pkgs, ... }:
 
 let
-main-menu = pkgs.writeShellApplication {
-	name = "main-menu";
-	runtimeInputs = with pkgs; [ rofi ];
-	text = builtins.readFile ./main-menu.sh;
-};
+  main-menu = pkgs.writeShellApplication {
+    name = "main-menu";
+    runtimeInputs = with pkgs; [ rofi ];
+    text = builtins.readFile ./main-menu.sh;
+  };
 in
 {
-	home.packages = [
-		main-menu
-	];
+  home.packages = [
+    main-menu
+  ];
 }

@@ -95,13 +95,13 @@ in
           directory = ".gnupg";
           mode = "0700";
         }
-		".local/share/TelegramDesktop"
+        ".local/share/TelegramDesktop"
         ".local/share/keyrings"
         ".librewolf"
         ".config/syncthing"
         ".local/share/Steam"
         ".steam"
-		".local/state/backup-from-pi"
+        ".local/state/backup-from-pi"
       ];
       files = [
         ".bash_history"

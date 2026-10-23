@@ -8,7 +8,7 @@
 {
   imports = [
     ./packages.nix
-	./scripts
+    ./scripts
 
     ./programs/hyprland
     ./programs/rofi

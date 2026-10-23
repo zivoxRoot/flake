@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 # Pi side of the backup system. See docs/backup.md.
 #
@@ -13,7 +18,14 @@
 
 let
   inherit (lib)
-    mkOption types escapeShellArg mapAttrsToList concatStrings concatStringsSep optionalString;
+    mkOption
+    types
+    escapeShellArg
+    mapAttrsToList
+    concatStrings
+    concatStringsSep
+    optionalString
+    ;
 
   cfg = config.my.backup;
 
@@ -73,37 +85,55 @@ let
 
   # --- per-service pieces ---------------------------------------------------
 
-  exportScript = name: s: pkgs.writeShellScript "backup-export-${name}" ''
-    set -euo pipefail
-    ${if s.export != null then s.export else ''
-      rsync -a --delete ${escapeShellArg s.path}/ "$1/"
-    ''}
-  '';
+  exportScript =
+    name: s:
+    pkgs.writeShellScript "backup-export-${name}" ''
+      set -euo pipefail
+      ${
+        if s.export != null then
+          s.export
+        else
+          ''
+            rsync -a --delete ${escapeShellArg s.path}/ "$1/"
+          ''
+      }
+    '';
 
-  restoreScript = name: s: pkgs.writeShellScript "backup-restore-${name}" ''
-    set -euo pipefail
-    ${if s.restore != null then s.restore else ''
-      dst=${escapeShellArg s.path}
-      if [ -e "$dst" ]; then
-        mv "$dst" "$dst.pre-restore-$(date +%F_%H%M)"
+  restoreScript =
+    name: s:
+    pkgs.writeShellScript "backup-restore-${name}" ''
+      set -euo pipefail
+      ${
+        if s.restore != null then
+          s.restore
+        else
+          ''
+            dst=${escapeShellArg s.path}
+            if [ -e "$dst" ]; then
+              mv "$dst" "$dst.pre-restore-$(date +%F_%H%M)"
+            fi
+            mkdir -p "$dst"
+            rsync -a --chown=${s.owner}:${s.group} "$1/" "$dst/"
+            chmod ${s.mode} "$dst"
+          ''
+      }
+    '';
+
+  stopUnit =
+    s:
+    optionalString (s.unit != null) ''
+      local was_active=0
+      if systemctl is-active --quiet ${escapeShellArg s.unit}; then
+        was_active=1
+        systemctl stop ${escapeShellArg s.unit}
       fi
-      mkdir -p "$dst"
-      rsync -a --chown=${s.owner}:${s.group} "$1/" "$dst/"
-      chmod ${s.mode} "$dst"
-    ''}
-  '';
+    '';
 
-  stopUnit = s: optionalString (s.unit != null) ''
-    local was_active=0
-    if systemctl is-active --quiet ${escapeShellArg s.unit}; then
-      was_active=1
-      systemctl stop ${escapeShellArg s.unit}
-    fi
-  '';
-
-  startUnit = s: optionalString (s.unit != null) ''
-    if [ "$was_active" = 1 ]; then systemctl start ${escapeShellArg s.unit}; fi
-  '';
+  startUnit =
+    s:
+    optionalString (s.unit != null) ''
+      if [ "$was_active" = 1 ]; then systemctl start ${escapeShellArg s.unit}; fi
+    '';
 
   # The body runs as a child process so `set -e` really applies inside it,
   # and the unit is always restarted afterwards, even if the copy failed.
@@ -136,7 +166,12 @@ let
 
   backupPrepare = pkgs.writeShellApplication {
     name = "backup-prepare";
-    runtimeInputs = [ pkgs.rsync pkgs.systemd pkgs.util-linux pkgs.coreutils ];
+    runtimeInputs = [
+      pkgs.rsync
+      pkgs.systemd
+      pkgs.util-linux
+      pkgs.coreutils
+    ];
     text = ''
       # shellcheck disable=SC2034
       EXPORT_DIR=${escapeShellArg cfg.exportDir}
@@ -154,7 +189,12 @@ let
 
   backupRestore = pkgs.writeShellApplication {
     name = "backup-restore";
-    runtimeInputs = [ pkgs.rsync pkgs.systemd pkgs.util-linux pkgs.coreutils ];
+    runtimeInputs = [
+      pkgs.rsync
+      pkgs.systemd
+      pkgs.util-linux
+      pkgs.coreutils
+    ];
     text = ''
       # shellcheck disable=SC2034
       EXPORT_DIR=${escapeShellArg cfg.exportDir}
@@ -206,27 +246,38 @@ in
   };
 
   config = {
-    assertions = mapAttrsToList
-      (n: s: {
-        assertion = builtins.match "[a-zA-Z0-9_-]+" n != null
-          && (s.path != null || (s.export != null && s.restore != null));
-        message = "my.backup.services.${n}: the name may only contain [a-zA-Z0-9_-], and you must set `path` (or both `export` and `restore`).";
-      })
-      cfg.services;
+    assertions = mapAttrsToList (n: s: {
+      assertion =
+        builtins.match "[a-zA-Z0-9_-]+" n != null
+        && (s.path != null || (s.export != null && s.restore != null));
+      message = "my.backup.services.${n}: the name may only contain [a-zA-Z0-9_-], and you must set `path` (or both `export` and `restore`).";
+    }) cfg.services;
 
-    environment.systemPackages = [ pkgs.rsync backupPrepare backupRestore ];
+    environment.systemPackages = [
+      pkgs.rsync
+      backupPrepare
+      backupRestore
+    ];
 
     systemd.tmpfiles.rules = [
       "d ${dirOf cfg.exportDir} 0755 ${cfg.user} users -"
       "d ${cfg.exportDir} 0700 ${cfg.user} users -"
     ];
 
-    security.sudo.extraRules = [{
-      users = [ cfg.user ];
-      commands = [
-        { command = "/run/current-system/sw/bin/backup-prepare"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/backup-restore"; options = [ "NOPASSWD" ]; }
-      ];
-    }];
+    security.sudo.extraRules = [
+      {
+        users = [ cfg.user ];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/backup-prepare";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/backup-restore";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 }

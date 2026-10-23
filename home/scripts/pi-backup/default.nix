@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 # Laptop side of the backup system (home-manager module). See docs/backup.md.
 #
@@ -8,7 +13,13 @@
 #   backup-from-pi-remind       the 21:00 notification (run by the timer below)
 
 let
-  inherit (lib) mkOption types concatStringsSep mapAttrsToList getExe;
+  inherit (lib)
+    mkOption
+    types
+    concatStringsSep
+    mapAttrsToList
+    getExe
+    ;
 
   cfg = config.my.piBackup;
 
@@ -25,21 +36,37 @@ let
 
   backupFromPi = pkgs.writeShellApplication {
     name = "backup-from-pi";
-    runtimeInputs = with pkgs; [ rsync openssh dunst coreutils findutils util-linux ];
+    runtimeInputs = with pkgs; [
+      rsync
+      openssh
+      dunst
+      coreutils
+      findutils
+      util-linux
+    ];
     runtimeEnv = env;
     text = builtins.readFile ./backup-from-pi.sh;
   };
 
   restoreToPi = pkgs.writeShellApplication {
     name = "restore-to-pi";
-    runtimeInputs = with pkgs; [ rsync openssh coreutils findutils ];
+    runtimeInputs = with pkgs; [
+      rsync
+      openssh
+      coreutils
+      findutils
+    ];
     runtimeEnv = env;
     text = builtins.readFile ./restore-to-pi.sh;
   };
 
   backupRemind = pkgs.writeShellApplication {
     name = "backup-from-pi-remind";
-    runtimeInputs = [ pkgs.dunst pkgs.coreutils backupFromPi ];
+    runtimeInputs = [
+      pkgs.dunst
+      pkgs.coreutils
+      backupFromPi
+    ];
     text = builtins.readFile ./backup-remind.sh;
   };
 in
@@ -95,7 +122,11 @@ in
   };
 
   config = {
-    home.packages = [ backupFromPi restoreToPi backupRemind ];
+    home.packages = [
+      backupFromPi
+      restoreToPi
+      backupRemind
+    ];
 
     systemd.user.services.backup-from-pi-remind = {
       Unit.Description = "Pi backup reminder";
