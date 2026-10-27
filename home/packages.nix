@@ -1,4 +1,9 @@
-{ nixpkgs, pkgs, ... }:
+{
+  nixpkgs,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -61,6 +66,7 @@
     rustup
     nixfmt
     biome
+    quickshell
 
     # Base commands
     tree
