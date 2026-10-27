@@ -99,6 +99,18 @@
                       name = "Jellyfin";
                       url = "http://${vars.piAddress}:8096";
                     }
+                    {
+                      name = "Immich";
+                      url = "http://${vars.piAddress}:2283";
+                    }
+                    {
+                      name = "Syiuan";
+                      url = "http://${vars.piAddress}:6806";
+                    }
+                    {
+                      name = "Navidrome";
+                      url = "http://${vars.piAddress}:4533";
+                    }
                   ];
                 }
                 {
