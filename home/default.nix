@@ -8,6 +8,7 @@
 {
   imports = [
     ./packages.nix
+    ./mime.nix
     ./scripts
 
     ./programs/hyprland
