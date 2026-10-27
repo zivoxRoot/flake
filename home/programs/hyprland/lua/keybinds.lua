@@ -23,13 +23,9 @@ end)
 -- Daily note
 -- hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("$HOME/dots/s/daily_note.sh"))
 
---------- QUICKSHELL TESTS -----------
-hl.bind("ALT + Space", hl.dsp.exec_cmd("quickshell ipc call launcher toggle"))
---------- QUICKSHELL TESTS -----------
-
--- Menu
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(mainMenu))
--- hl.bind("ALT + Space", hl.dsp.exec_cmd(appMenu))
+--------- START QUICKSHELL IPC -----------
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell ipc call launcher toggle"))
+--------- END QUICKSHELL IPC -----------
 
 -- Notifications
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop"))  -- Pop latest notification
