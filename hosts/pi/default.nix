@@ -19,6 +19,11 @@
     ../../modules/services/tailscale.nix
 
     ../../modules/server/jellyfin.nix
+    ../../modules/server/immich.nix
+    ../../modules/server/siyuan.nix
+    ../../modules/server/navidrome.nix
+    ../../modules/server/excalidash.nix
+
     ../../modules/server/backup-export.nix
   ];
 

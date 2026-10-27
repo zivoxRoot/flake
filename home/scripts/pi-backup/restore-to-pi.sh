@@ -10,9 +10,12 @@
 #   (root, via sudo) stops the service, moves the current state aside as <path>.pre-restore-<date>,
 #   restores the staged state with the right owner and restarts the service.
 # Plain folders: copied back without --delete, so nothing on the Pi is ever removed.
+#   Folders listed in my.backup.services.*.dirs on the Pi (e.g. immich-library) belong to another
+#   user there: they are staged first and `backup-restore --dir` puts them back as root.
+# Order: folders first, services last, so a service is started once its files are back.
 #
 # Config arrives as environment variables from default.nix:
-#   PI_REMOTE PI_MOUNT PI_EXPORT_DIR PI_DEST PI_SOURCES
+#   PI_REMOTE PI_MOUNT PI_EXPORT_DIR PI_RESTORE_DIR PI_DEST PI_SOURCES
 
 SNAPSHOTS="$PI_DEST/snapshots"
 SSH_OPTS=(-o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=30)
@@ -107,8 +110,33 @@ restore_service() { # restore_service <name>
   ssh "${SSH_OPTS[@]}" "$PI_REMOTE" "sudo -n $RESTORE_BIN $name"
 }
 
+pi_manages_dir() { # does the Pi restore this folder as root? (my.backup.services.*.dirs)
+  local list
+  # shellcheck disable=SC2029 # expanding on the client side is intended
+  list=$(ssh "${SSH_OPTS[@]}" "$PI_REMOTE" "sudo -n $RESTORE_BIN --list-dirs" 2> /dev/null || true)
+  [[ " $list " == *" $1 "* ]]
+}
+
+restore_dir() { # restore_dir <name>: stage on the Pi, then root moves it into place
+  local name=$1
+  local opts=(-a --no-owner --no-group --delete --info=progress2)
+  if (( dry )); then opts+=(--dry-run); fi
+  echo "== '$name': staging on the Pi (put back as root by backup-restore)"
+  rsync "${opts[@]}" -e "ssh ${SSH_OPTS[*]}" "$snap/$name/" "$PI_REMOTE:$PI_RESTORE_DIR/$name/"
+  if (( dry )); then
+    echo "(dry run: nothing applied)"
+    return 0
+  fi
+  # shellcheck disable=SC2029 # expanding on the client side is intended
+  ssh "${SSH_OPTS[@]}" "$PI_REMOTE" "sudo -n $RESTORE_BIN --dir $name"
+}
+
 restore_files() { # restore_files <name> <remote_path>
   local name=$1 path=$2
+  if pi_manages_dir "$name"; then
+    restore_dir "$name"
+    return 0
+  fi
   # no --delete: restoring never removes anything on the Pi
   local opts=(-rltD --no-owner --no-group --partial --info=progress2)
   if (( dry )); then opts+=(--dry-run -v); fi
@@ -118,10 +146,11 @@ restore_files() { # restore_files <name> <remote_path>
 
 # Validate every target first, so we never stop halfway because of a typo
 plan=()
+service_plan=()
 for t in "${targets[@]}"; do
   [[ "$t" =~ ^[A-Za-z0-9._-]+$ ]] || { echo "bad target name: $t" >&2; exit 2; }
   if [[ "$t" != export && -d "$snap/export/$t" ]]; then
-    plan+=("service:$t")
+    service_plan+=("service:$t")
   elif [[ "$t" != export && -d "$snap/$t" ]] && lookup_source "$t" > /dev/null; then
     plan+=("files:$t")
   else
@@ -129,6 +158,7 @@ for t in "${targets[@]}"; do
     exit 1
   fi
 done
+plan+=("${service_plan[@]}")
 
 echo "Snapshot: $snap_name  ->  $PI_REMOTE"
 for p in "${plan[@]}"; do echo "  ${p%%:*}: ${p#*:}"; done

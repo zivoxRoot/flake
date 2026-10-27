@@ -28,6 +28,7 @@ let
     PI_REMOTE = cfg.remote;
     PI_MOUNT = cfg.remoteMount;
     PI_EXPORT_DIR = cfg.exportDir;
+    PI_RESTORE_DIR = cfg.restoreDir;
     PI_DEST = cfg.destination;
     PI_SOURCES = concatStringsSep "\n" (mapAttrsToList (n: p: "${n}:${p}") cfg.sources);
     KEEP_DAYS = toString cfg.keepDays;
@@ -86,6 +87,11 @@ in
       type = types.str;
       default = "/mnt/data/backups/export";
       description = "Staging folder written by backup-prepare. Must match my.backup.exportDir on the Pi.";
+    };
+    restoreDir = mkOption {
+      type = types.str;
+      default = "/mnt/data/backups/restore";
+      description = "Staging folder for restores. Must match my.backup.restoreDir on the Pi.";
     };
     sources = mkOption {
       type = types.attrsOf types.str;
