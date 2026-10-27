@@ -34,6 +34,7 @@
     localsend
     qbittorrent
     google-chrome
+    zathura
 
     # CLI tools
     ffmpeg
