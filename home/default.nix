@@ -12,6 +12,7 @@
 
     ./programs/hyprland
     ./programs/rofi
+    ./programs/matugen
 
     ./programs/bash.nix
     ./programs/git.nix
