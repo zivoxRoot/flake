@@ -21,11 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +44,6 @@
       self,
       nixpkgs,
       home-manager,
-      stylix,
       sops-nix,
       disko,
       impermanence,
@@ -67,7 +61,6 @@
           inherit vars;
         };
         modules = [
-          stylix.nixosModules.stylix
           sops-nix.nixosModules.sops
           inputs.disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence

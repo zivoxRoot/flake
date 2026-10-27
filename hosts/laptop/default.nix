@@ -12,8 +12,6 @@
 
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/usb.nix
-    ../../modules/desktop/stylix.nix
-    ../../modules/desktop/theme-switch.nix
     ../../modules/desktop/gaming.nix
 
     ../../modules/services/bluetooth.nix
