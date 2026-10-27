@@ -37,6 +37,8 @@
     };
 
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+
+    claude-desktop.url = "github:tomsch/claude-desktop-nix";
   };
 
   outputs =
@@ -48,6 +50,7 @@
       disko,
       impermanence,
       nixos-raspberrypi,
+      claude-desktop,
       ...
     }@inputs:
     let
@@ -61,6 +64,7 @@
           inherit vars;
         };
         modules = [
+          { environment.systemPackages = [ claude-desktop.packages.x86_64-linux.default ]; }
           sops-nix.nixosModules.sops
           inputs.disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
