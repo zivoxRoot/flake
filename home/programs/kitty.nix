@@ -5,7 +5,7 @@
     enable = true;
 
     settings = {
-		# include = "./themes/Matugen.conf";
+      # include = "./themes/Matugen.conf";
 
       enable_audio_bell = false;
       scrollback_lines = 10000;
@@ -23,7 +23,7 @@
       font_family = "CaskaydiaCove Nerd Font Mono";
       window_padding_width = 10;
     };
-	   # relative paths are resolved from ~/.config/kitty
+    # relative paths are resolved from ~/.config/kitty
     extraConfig = ''
       include themes/Matugen.conf
     '';

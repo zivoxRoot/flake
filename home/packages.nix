@@ -18,8 +18,8 @@
     playerctl
     wl-clipboard
     adwaita-icon-theme
-	awww
-	matugen
+    awww
+    matugen
 
     gnome.gvfs
     udiskie
