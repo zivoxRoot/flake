@@ -6,10 +6,11 @@
 
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd = "qs ipc call lockscreen lock";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
+        ignore_wayland_inhibit = false;
       };
 
       listener = [
@@ -22,7 +23,7 @@
         {
           # 5 minutes: Lock screen
           timeout = 300;
-          on-timeout = "hyprlock --immediate";
+          on-timeout = "qs ipc call lockscreen lock";
         }
         {
           # 7 minutes: turn screen off
