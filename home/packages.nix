@@ -20,6 +20,7 @@
     adwaita-icon-theme
     awww
     matugen
+    glib
 
     gnome.gvfs
     udiskie
@@ -70,6 +71,7 @@
     nixfmt
     biome
     quickshell
+    qt6.qt5compat
 
     # Base commands
     tree
@@ -83,8 +85,14 @@
 
     # Fonts
     noto-fonts-color-emoji
+    nerd-fonts.jetbrains-mono
 
     # Misc
     fastfetch
+    cmatrix
+
+    # Games
+    xonotic
+    veloren
   ];
 }
