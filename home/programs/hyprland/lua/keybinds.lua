@@ -11,6 +11,8 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + I", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ "fullscreen", "toggle" }))
 
+hl.bind(mainMod .. " + Delete", hl.dsp.exec_cmd("qs ipc call lockscreen lock"))
+
 -- Enter the passthrough submap
 hl.bind("SUPER + F12", hl.dsp.submap("vm"))
 
@@ -24,11 +26,14 @@ end)
 -- hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("$HOME/dots/s/daily_note.sh"))
 
 --------- START QUICKSHELL IPC -----------
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell ipc call launcher toggle"))
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell -p ~/Documents/quickshell-config ipc call launcher toggle"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("quickshell -p ~/Documents/quickshell-config ipc call control-center toggle"))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("quickshell -p ~/Documents/quickshell-config ipc call container-management toggle"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell -p ~/Documents/quickshell-config ipc call notifications-panel toggle"))
 --------- END QUICKSHELL IPC -----------
 
 -- Notifications
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop"))  -- Pop latest notification
+-- hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop"))  -- Pop latest notification
 hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("dunstctl set-paused toggle"))  -- Toggle do not disturb
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("dunstctl close-all"))  -- Close all visible notifications
 hl.bind(mainMod .. " + ALT + N", hl.dsp.exec_cmd("dunstctl context"))  -- Open the actions menu
@@ -67,12 +72,12 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Volume
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && qs ipc call volume showOsd"), { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && volume-notification"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && volume-notification"), { locked = true, repeating = true })
-hl.bind(mainMod .. " + XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+ && volume-notification"), { locked = true, repeating = true })
-hl.bind(mainMod .. " + XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && volume-notification"), { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && qs ipc call volume showOsd"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && qs ipc call volume showOsd"), { locked = true, repeating = true })
+hl.bind(mainMod .. " + XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+ && qs ipc call volume showOsd"), { locked = true, repeating = true })
+hl.bind(mainMod .. " + XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && qs ipc call volume showOsd"), { locked = true, repeating = true })
 
 -- Brightness
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -n2 set 5%+ && brightness-notification"), { locked = true, repeating = true })
