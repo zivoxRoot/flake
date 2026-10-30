@@ -31,7 +31,7 @@
     };
 
     consoleLogLevel = 3;
-    initrd.verbose = false;
+    # initrd.verbose = false;
     kernelParams = [
       "quit"
       "rd.udev.log_level=3"

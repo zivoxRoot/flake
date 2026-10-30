@@ -12,11 +12,11 @@ let
 in
 {
   # ── Wipe root on every boot ────────────────────────────────────
-  boot.initrd.systemd.enable = true;
-  boot.initrd.systemd.initrdBin = [
-    pkgs.btrfs-progs
-    pkgs.findutils
-  ];
+  # boot.initrd.systemd.enable = true;
+  # boot.initrd.systemd.initrdBin = [
+  #   pkgs.btrfs-progs
+  #   pkgs.findutils
+  # ];
 
   boot.initrd.systemd.services.rollback = {
     description = "Rollback btrfs root subvolume to a blank state";
