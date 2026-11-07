@@ -55,11 +55,14 @@
     openssl
     gh
     jq
+    pi-coding-agent
+    opencode
 
     # Programming
     vim
     tmux
     claude-code
+    gnumake
     devcontainer
     python315
     nodejs
@@ -72,6 +75,8 @@
     biome
     quickshell
     qt6.qt5compat
+    valgrind
+    libbsd
 
     # Base commands
     tree
