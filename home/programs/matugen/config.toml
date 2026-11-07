@@ -7,4 +7,4 @@ post_hook = "pkill -USR1 kitty"
 
 [templates.quickshell]
 input_path = './templates/quickshell.json'
-output_path = '~/.local/state/quickshell/generated/colors.json'
+output_path = '~/.local/state/quickshell-config/colors.json'
