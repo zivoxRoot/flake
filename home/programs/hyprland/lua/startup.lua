@@ -9,7 +9,7 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("dunst")
 	hl.exec_cmd("hyprsunset")
-	hl.exec_cmd("quickshell -p ~/Documents/quickshell-config")
+	hl.exec_cmd("quickshell")
 
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
