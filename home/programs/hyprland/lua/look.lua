@@ -25,6 +25,7 @@ hl.config({
             enabled   = false,
 	    size = 6,
 	    passes = 2,
+	    variant = "frost",
         },
     },
 

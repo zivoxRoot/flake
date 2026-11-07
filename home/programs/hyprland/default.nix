@@ -14,6 +14,8 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
+    package = null;
+    portalPackage = null;
     # withUWSM = true;
 
     # NOTE: To remove later, temporary solution to loads my lua-based hyprland config

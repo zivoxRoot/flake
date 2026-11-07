@@ -39,6 +39,8 @@
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
 
     claude-desktop.url = "github:tomsch/claude-desktop-nix";
+
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.57.0";
   };
 
   outputs =
@@ -51,6 +53,7 @@
       impermanence,
       nixos-raspberrypi,
       claude-desktop,
+      hyprland,
       ...
     }@inputs:
     let
