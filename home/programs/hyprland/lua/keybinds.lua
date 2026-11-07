@@ -26,10 +26,10 @@ end)
 -- hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("$HOME/dots/s/daily_note.sh"))
 
 --------- START QUICKSHELL IPC -----------
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell -p ~/Documents/quickshell-config ipc call launcher toggle"))
-hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("quickshell -p ~/Documents/quickshell-config ipc call control-center toggle"))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("quickshell -p ~/Documents/quickshell-config ipc call container-management toggle"))
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell -p ~/Documents/quickshell-config ipc call notifications-panel toggle"))
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell ipc call launcher toggle"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("quickshell ipc call control-center toggle"))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("quickshell ipc call container-management toggle"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call notifications-panel toggle"))
 --------- END QUICKSHELL IPC -----------
 
 -- Notifications
