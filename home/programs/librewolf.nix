@@ -143,6 +143,23 @@
                     }
                   ];
                 }
+                {
+                  name = "42";
+                  bookmarks = [
+                    {
+                      name = "Intra";
+                      url = "https://profile.intra.42.fr";
+                    }
+                    {
+                      name = "Doc";
+                      url = "https://docs.42mulhouse.fr";
+                    }
+                    {
+                      name = "Slack";
+                      url = "https://app.slack.com";
+                    }
+                  ];
+                }
               ];
             }
           ];
