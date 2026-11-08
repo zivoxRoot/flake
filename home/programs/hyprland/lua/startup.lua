@@ -4,6 +4,8 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("librewolf")
 	hl.exec_cmd("kitty", { workspace = 3 })
 	hl.exec_cmd("claude-desktop", { workspace = 4 })
+	hl.exec_cmd("kitty kew", { workspace = 9 })
+	hl.exec_cmd("xdg-open obsidian://", { workspace = 10 })
 
 	-- Desktop components
 	hl.exec_cmd("awww-daemon")
