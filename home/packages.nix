@@ -78,6 +78,7 @@
     qt6.qt5compat
     valgrind
     libbsd
+    norminette
 
     # Base commands
     tree
