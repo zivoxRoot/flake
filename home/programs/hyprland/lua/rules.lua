@@ -45,3 +45,16 @@ hl.window_rule({
 	float = false,
 	maximize = true,
 })
+
+-- Float obsidian settings
+hl.window_rule({
+	name = "obsidian-settings-float",
+	match = {
+		class = "^md\\.obsidian\\.Obsidian$",
+		initial_title = "^Settings.*",
+	},
+
+	float = true,
+	center = true,
+	size = "900 600",
+})
