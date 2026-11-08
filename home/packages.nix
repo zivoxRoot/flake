@@ -36,6 +36,7 @@
     qbittorrent
     google-chrome
     zathura
+    obsidian
 
     # CLI tools
     ffmpeg
