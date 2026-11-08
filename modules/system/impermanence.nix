@@ -104,12 +104,12 @@ in
         ".steam"
         ".local/state/backup-from-pi"
         ".local/state/quickshell-config"
-	".claude"
-	".config/Claude"
-	".config/opencode"
-	".local/share/opencode"
-	".local/state/opencode"
-	".cache/awww"
+        ".claude"
+        ".config/Claude"
+        ".config/opencode"
+        ".local/share/opencode"
+        ".local/state/opencode"
+        ".cache/awww"
       ];
       files = [
         ".bash_history"
