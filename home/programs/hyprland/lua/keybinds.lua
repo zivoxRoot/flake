@@ -30,6 +30,7 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell ipc call launcher tog
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("quickshell ipc call control-center toggle"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("quickshell ipc call container-management toggle"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call notifications-panel toggle"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("quickshell ipc call wifi toggle"))
 --------- END QUICKSHELL IPC -----------
 
 -- Notifications
