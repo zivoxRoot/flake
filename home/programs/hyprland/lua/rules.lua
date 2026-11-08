@@ -58,3 +58,15 @@ hl.window_rule({
 	center = true,
 	size = "900 600",
 })
+
+-- Float Nautilus popup window
+hl.window_rule({
+	name = "nautilus-popup-float",
+	match = {
+		class = "^xdg-desktop-portal-gtk$",
+	},
+
+	float = true,
+	center = true,
+	size = "900 600",
+})
