@@ -37,6 +37,7 @@
     google-chrome
     zathura
     obsidian
+    winboat
 
     # CLI tools
     ffmpeg
