@@ -36,7 +36,6 @@
     qbittorrent
     google-chrome
     zathura
-    obsidian
     winboat
 
     # CLI tools

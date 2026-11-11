@@ -26,6 +26,7 @@
     ./programs/hyprlock.nix
     ./programs/hypridle.nix
     ./programs/mpd.nix
+    ./programs/obsidian.nix
   ];
 
   home.username = vars.username;

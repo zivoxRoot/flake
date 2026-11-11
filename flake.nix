@@ -41,6 +41,11 @@
     claude-desktop.url = "github:tomsch/claude-desktop-nix";
 
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.57.0";
+
+    obsidian-extensions = {
+      url = "github:karaolidis/nix-obsidian-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -54,6 +59,7 @@
       nixos-raspberrypi,
       claude-desktop,
       hyprland,
+      obsidian-extensions,
       ...
     }@inputs:
     let

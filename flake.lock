@@ -629,6 +629,27 @@
         "type": "indirect"
       }
     },
+    "obsidian-extensions": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1794316515,
+        "narHash": "sha256-RX93978JJ7V9kdggYh3T8LeEltQvwT58vpRJn7OqU54=",
+        "owner": "karaolidis",
+        "repo": "nix-obsidian-extensions",
+        "rev": "7650df3939739d41d3526766909ecf6fac71936f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "karaolidis",
+        "repo": "nix-obsidian-extensions",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -661,6 +682,7 @@
         "impermanence": "impermanence",
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixpkgs": "nixpkgs_4",
+        "obsidian-extensions": "obsidian-extensions",
         "sops-nix": "sops-nix"
       }
     },
@@ -696,6 +718,27 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "obsidian-extensions",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785360170,
+        "narHash": "sha256-XE1lKgQ3eIO3E7zWryqcRsax+mYXod/5RHBn4YaR9YE=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "d1187f8bc71fb8aab02395869ec3f5c1920f75c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
         "type": "github"
       }
     },
