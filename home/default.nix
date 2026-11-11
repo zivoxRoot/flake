@@ -25,6 +25,7 @@
     ./programs/waybar.nix
     ./programs/hyprlock.nix
     ./programs/hypridle.nix
+    ./programs/mpd.nix
   ];
 
   home.username = vars.username;

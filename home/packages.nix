@@ -59,6 +59,8 @@
     jq
     pi-coding-agent
     opencode
+    rmpc
+    mpc
 
     # Programming
     vim
