@@ -21,6 +21,7 @@
     awww
     matugen
     glib
+    wtype
 
     gnome.gvfs
     udiskie
@@ -36,7 +37,7 @@
     qbittorrent
     google-chrome
     zathura
-    winboat
+    blender
 
     # CLI tools
     ffmpeg
@@ -60,6 +61,8 @@
     opencode
     rmpc
     mpc
+    scrcpy
+    android-tools
 
     # Programming
     vim
