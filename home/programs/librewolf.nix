@@ -75,6 +75,10 @@
                       url = "https://coolify.zhkcloud.ovh";
                     }
                     {
+                      name = "OVH";
+                      url = "https://manager.eu.ovhcloud.com";
+                    }
+                    {
                       name = "Platform";
                       url = "https://emg-platform.zhkcloud.ovh";
                     }
