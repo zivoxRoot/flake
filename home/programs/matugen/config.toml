@@ -8,3 +8,8 @@ post_hook = "pkill -USR1 kitty"
 [templates.quickshell]
 input_path = './templates/quickshell.json'
 output_path = '~/.local/state/quickshell-config/colors.json'
+
+[templates.bulb]
+input_path = './templates/bulb.txt'
+output_path = '~/.cache/matugen-bulb'
+post_hook = 'wiz hex "$(cat $HOME/.cache/matugen-bulb)" 60'
