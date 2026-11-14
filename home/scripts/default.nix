@@ -3,5 +3,6 @@
 {
   imports = [
     ./pi-backup
+    ./wiz
   ];
 }
