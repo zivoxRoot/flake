@@ -63,6 +63,7 @@
     mpc
     scrcpy
     android-tools
+    cliphist
 
     # Programming
     vim
