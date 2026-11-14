@@ -32,7 +32,7 @@ hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("quickshell ipc call container-manage
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call notifications-panel toggle"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleWifi"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleBluetooth"))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleVolume"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleVolume"))
 hl.bind(mainMod .. " + SEMICOLON", hl.dsp.exec_cmd("quickshell ipc call emoji-picker toggle"))
 --------- END QUICKSHELL IPC -----------
 
