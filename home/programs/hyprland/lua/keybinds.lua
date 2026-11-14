@@ -30,7 +30,10 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell ipc call launcher tog
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("quickshell ipc call control-center toggle"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("quickshell ipc call container-management toggle"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call notifications-panel toggle"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("quickshell ipc call wifi toggle"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleWifi"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleBluetooth"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleVolume"))
+hl.bind(mainMod .. " + SEMICOLON", hl.dsp.exec_cmd("quickshell ipc call emoji-picker toggle"))
 --------- END QUICKSHELL IPC -----------
 
 -- Notifications
