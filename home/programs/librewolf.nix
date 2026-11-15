@@ -79,6 +79,10 @@
                       url = "https://manager.eu.ovhcloud.com";
                     }
                     {
+                      name = "Mistral";
+                      url = "https://console.mistral.ai/home";
+                    }
+                    {
                       name = "Platform";
                       url = "https://emg-platform.zhkcloud.ovh";
                     }
