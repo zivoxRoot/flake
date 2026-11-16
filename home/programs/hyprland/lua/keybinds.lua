@@ -34,6 +34,7 @@ hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("quickshell ipc call menu-manager tog
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleBluetooth"))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("quickshell ipc call menu-manager toggleVolume"))
 hl.bind(mainMod .. " + SEMICOLON", hl.dsp.exec_cmd("quickshell ipc call emoji-picker toggle"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("quickshell ipc call clipboard toggle"))
 --------- END QUICKSHELL IPC -----------
 
 -- Notifications
