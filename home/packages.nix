@@ -64,6 +64,7 @@
     scrcpy
     android-tools
     cliphist
+    wireguard-tools
 
     # Programming
     vim

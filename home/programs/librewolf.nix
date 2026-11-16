@@ -71,8 +71,12 @@
                       url = "https://ecole-mathias-grunewald.org:2096";
                     }
                     {
-                      name = "Coolify";
+                      name = "Coolify VSP mat";
                       url = "https://coolify.zhkcloud.ovh";
+                    }
+                    {
+                      name = "Coolify prod";
+                      url = "https://coolify.almilia.fr";
                     }
                     {
                       name = "OVH";
