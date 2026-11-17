@@ -19,6 +19,7 @@
         mode = "0400";
         path = "/home/${vars.username}/.ssh/id_ed25519";
       };
+      "wireguard/private_key" = {};
     };
   };
 }

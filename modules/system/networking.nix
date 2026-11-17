@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ config, vars, ... }:
 
 {
   # Define your hostname
@@ -12,14 +12,13 @@
   # Wireguard
   networking.wg-quick.interfaces.wg0 = {
     address = [ "10.77.0.3/24" ];
-    privateKeyFile = "/etc/wireguard/privatekey";
-    # dns = [ "10.77.0.1" ];  # à garder seulement si le VPS fait tourner un DNS
+    privateKeyFile = config.sops.secrets."wireguard/private_key".path;
 
     peers = [
       {
-        publicKey = "JU8qJQPdlyBJ5zk+2Gn0WeVsvQx8k4i+/5ohhQvzaCI="; # clé PUBLIQUE du serveur
+        publicKey = "JU8qJQPdlyBJ5zk+2Gn0WeVsvQx8k4i+/5ohhQvzaCI=";
         endpoint = "51.210.107.168:51820";
-        allowedIPs = [ "10.77.0.0/24" ]; # "0.0.0.0/0" si tu veux tout router via le VPS
+        allowedIPs = [ "10.77.0.0/24" ];
         persistentKeepalive = 25;
       }
     ];
