@@ -38,6 +38,7 @@
     google-chrome
     zathura
     blender
+    vesktop
 
     # CLI tools
     ffmpeg
@@ -64,7 +65,6 @@
     scrcpy
     android-tools
     cliphist
-    wireguard-tools
 
     # Programming
     vim
