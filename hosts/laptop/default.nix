@@ -36,7 +36,6 @@
   ];
 
   sops.age.keyFile = "/persist/var/lib/sops-nix/key.txt";
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   system.stateVersion = vars.stateVersion;
 }

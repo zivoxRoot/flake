@@ -19,8 +19,8 @@
   bootAnimation = "lone";
   # Possible themes: https://github.com/adi1090x/plymouth-themes
 
-  # PI
-  piHostname = "pi";
+  # Pi: services still running there, reached over Tailscale.
+  # Not managed by this flake anymore, only used by the browser bookmarks.
   piAddress = "pi";
 
   # Do NOT touch

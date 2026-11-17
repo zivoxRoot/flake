@@ -102,7 +102,6 @@ in
         ".config/quickshell"
         ".local/share/Steam"
         ".steam"
-        ".local/state/backup-from-pi"
         ".local/state/quickshell-config"
         ".claude"
         ".config/Claude"

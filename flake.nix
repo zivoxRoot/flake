@@ -1,13 +1,6 @@
 {
   description = "My flake";
 
-  nixConfig = {
-    extra-substituters = [ "https://nixos-raspberrypi.cachix.org" ];
-    extra-trusted-public-keys = [
-      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
-    ];
-  };
-
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
@@ -36,8 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
-
     claude-desktop.url = "github:tomsch/claude-desktop-nix";
 
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.57.0";
@@ -56,7 +47,6 @@
       sops-nix,
       disko,
       impermanence,
-      nixos-raspberrypi,
       claude-desktop,
       hyprland,
       obsidian-extensions,
@@ -95,20 +85,6 @@
               backupFileExtension = "backup";
             };
           }
-        ];
-      };
-
-      nixosConfigurations.${vars.piHostname} = nixos-raspberrypi.lib.nixosSystem {
-        specialArgs = { inherit inputs nixos-raspberrypi vars; };
-        modules = [
-          sops-nix.nixosModules.sops
-          inputs.disko.nixosModules.disko
-          ({ nixos-raspberrypi, ... }: {
-            imports = with nixos-raspberrypi.nixosModules; [
-              raspberry-pi-5.base
-            ];
-          })
-          ./hosts/pi
         ];
       };
     };
