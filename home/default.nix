@@ -1,12 +1,15 @@
 {
   config,
   pkgs,
+  inputs,
   vars,
   ...
 }:
 
 {
   imports = [
+    inputs.zen-browser.homeModules.beta
+
     ./packages.nix
     ./mime.nix
     ./scripts
@@ -27,6 +30,7 @@
     ./programs/hypridle.nix
     ./programs/mpd.nix
     ./programs/obsidian.nix
+    ./programs/zen.nix
   ];
 
   home.username = vars.username;

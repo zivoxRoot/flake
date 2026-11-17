@@ -31,6 +31,12 @@
 
     claude-desktop.url = "github:tomsch/claude-desktop-nix";
 
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.57.0";
 
     obsidian-extensions = {
@@ -48,6 +54,7 @@
       disko,
       impermanence,
       claude-desktop,
+      zen-browser,
       hyprland,
       obsidian-extensions,
       ...

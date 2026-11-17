@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   inputs,
   vars,
   ...
@@ -17,7 +18,6 @@
 
         extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
           ublock-origin
-          bitwarden
         ];
 
         bookmarks = {

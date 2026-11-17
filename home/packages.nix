@@ -22,6 +22,7 @@
     matugen
     glib
     wtype
+    gsettings-desktop-schemas
 
     gnome.gvfs
     udiskie
