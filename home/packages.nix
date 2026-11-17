@@ -60,6 +60,7 @@
     gh
     ripgrep
     fd
+    glow
     bat
     jq
     pi-coding-agent
