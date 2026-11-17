@@ -57,6 +57,9 @@
     caligula
     openssl
     gh
+    ripgrep
+    fd
+    bat
     jq
     pi-coding-agent
     opencode
@@ -65,6 +68,7 @@
     scrcpy
     android-tools
     cliphist
+    lazygit
 
     # Programming
     vim
