@@ -38,11 +38,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1793159912,
-        "narHash": "sha256-fgLDxRndRkgmVQaUhZnO3DzaWeLyyyZkC/dw8j2ZJ/Y=",
+        "lastModified": 1794632118,
+        "narHash": "sha256-s4ENH2zVoGfU06uK8gfg5L2w3sGkSFGegrFqaVzcXxo=",
         "owner": "tomsch",
         "repo": "claude-desktop-nix",
-        "rev": "d09d669a3fbbeeaebec4b157b6ee76615e6d8757",
+        "rev": "cec2c23d3f04accc5adeb93e94b02e4fd603510b",
         "type": "github"
       },
       "original": {
@@ -106,6 +106,27 @@
       "original": {
         "owner": "NixOS",
         "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "nixvim",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793576659,
+        "narHash": "sha256-V1h85lUaJBQoHFrB2vpXZOE0Ju1MYSnIpsehoVZYlDo=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "ea2630b7470978622c7689a1ff75d2b389175399",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
         "type": "github"
       }
     },
@@ -534,6 +555,28 @@
         "type": "indirect"
       }
     },
+    "nixvim": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1794408140,
+        "narHash": "sha256-vS4BTt6CkLn2BLcYA7kZUxFNnZpPgW0GJ73s/VoPhWc=",
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "rev": "44849d3d24b28d59fa963bd832ec59c60c56a34c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "type": "github"
+      }
+    },
     "obsidian-extensions": {
       "inputs": {
         "nixpkgs": [
@@ -586,6 +629,7 @@
         "hyprland": "hyprland",
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs_3",
+        "nixvim": "nixvim",
         "obsidian-extensions": "obsidian-extensions",
         "sops-nix": "sops-nix",
         "zen-browser": "zen-browser"
@@ -623,6 +667,23 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "systems_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791244623,
+        "narHash": "sha256-uuanbkFk8a313Zfrxdcz8Us/yQtaxNnKJtX8v0ZPpd8=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "d36eeed142f88b5a636f2e3856a53c61654cf29b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "ref": "future-26.11",
+        "repo": "default",
         "type": "github"
       }
     },

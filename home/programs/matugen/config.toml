@@ -13,3 +13,8 @@ output_path = '~/.local/state/quickshell-config/colors.json'
 input_path = './templates/bulb.txt'
 output_path = '~/.cache/matugen-bulb'
 post_hook = 'wiz hex "$(cat $HOME/.cache/matugen-bulb)" 60'
+
+[templates.neovim]
+input_path = "./templates/nvim-colors.json"
+output_path = "~/.cache/matugen/nvim-colors.json"
+post_hook = "pkill -SIGUSR1 nvim"

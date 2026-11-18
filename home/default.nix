@@ -9,6 +9,7 @@
 {
   imports = [
     inputs.zen-browser.homeModules.beta
+    inputs.nixvim.homeModules.nixvim
 
     ./packages.nix
     ./mime.nix
@@ -17,6 +18,7 @@
     ./programs/hyprland
     ./programs/rofi
     ./programs/matugen
+    ./programs/nvim
 
     ./programs/bash.nix
     ./programs/git.nix
@@ -38,7 +40,6 @@
 
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    EDITOR = "vim";
   };
 
   home.stateVersion = vars.stateVersion;

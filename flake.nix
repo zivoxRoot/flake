@@ -39,6 +39,11 @@
 
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.57.0";
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     obsidian-extensions = {
       url = "github:karaolidis/nix-obsidian-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
