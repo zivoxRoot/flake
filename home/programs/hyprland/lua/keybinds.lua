@@ -26,13 +26,13 @@ end)
 -- hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("$HOME/dots/s/daily_note.sh"))
 
 --------- START QUICKSHELL IPC -----------
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell ipc call launcher toggle"))
-hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("qs ipc call island toggleControlCenter"))
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell ipc call pill launcher"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("quickshell ipc call pill controlCenter"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("quickshell ipc call container-management toggle"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call notifications-panel toggle"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("quickshell ipc call wifi toggle"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("quickshell ipc call bluetooth toggle"))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("quickshell ipc call volume toggle"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("quickshell ipc call pill wifi"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("quickshell ipc call pill bluetooth"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("quickshell ipc call pill volume"))
 hl.bind(mainMod .. " + SEMICOLON", hl.dsp.exec_cmd("quickshell ipc call emoji-picker toggle"))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("quickshell ipc call clipboard toggle"))
 --------- END QUICKSHELL IPC -----------
@@ -79,7 +79,7 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 -- Volume
 hl.bind(
 	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && qs ipc call volume-osd showOsd"),
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && qs ipc call osd volume"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
@@ -89,43 +89,43 @@ hl.bind(
 )
 hl.bind(
 	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && qs ipc call volume-osd showOsd"),
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && qs ipc call osd volume"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && qs ipc call volume-osd showOsd"),
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && qs ipc call osd volume"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+ && qs ipc call volume-osd showOsd"),
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+ && qs ipc call osd volume"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && qs ipc call volume-osd showOsd"),
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && qs ipc call osd volume"),
 	{ locked = true, repeating = true }
 )
 
 -- Brightness
 hl.bind(
 	"XF86MonBrightnessUp",
-	hl.dsp.exec_cmd("brightnessctl -n2 set 5%+ && qs ipc call brightness showOsd"),
+	hl.dsp.exec_cmd("brightnessctl -n2 set 5%+ && qs ipc call osd brightness"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86MonBrightnessDown",
-	hl.dsp.exec_cmd("brightnessctl -n2 set 5%- && qs ipc call brightness showOsd"),
+	hl.dsp.exec_cmd("brightnessctl -n2 set 5%- && qs ipc call osd brightness"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + XF86MonBrightnessUp",
-	hl.dsp.exec_cmd("brightnessctl -n2 set 1%+ && qs ipc call brightness showOsd"),
+	hl.dsp.exec_cmd("brightnessctl -n2 set 1%+ && qs ipc call osd brightness"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + XF86MonBrightnessDown",
-	hl.dsp.exec_cmd("brightnessctl -n2 set 1%- && qs ipc call brightness showOsd"),
+	hl.dsp.exec_cmd("brightnessctl -n2 set 1%- && qs ipc call osd brightness"),
 	{ locked = true, repeating = true }
 )
