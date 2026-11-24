@@ -10,7 +10,6 @@
     # Desktop
     rofi
     waybar
-    dunst
     brightnessctl
     bluez
     xwayland-satellite
@@ -62,6 +61,8 @@
     fd
     glow
     bat
+    fzf
+    yazi
     jq
     pi-coding-agent
     opencode
