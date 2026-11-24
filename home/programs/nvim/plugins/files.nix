@@ -2,8 +2,7 @@
 
 {
   programs.nixvim = {
-    # yazi.nvim recommends this when it does not replace netrw.
-    globals.loaded_netrwPlugin = 1;
+    globals.loaded_netrwPlugin = 0;
 
     plugins.yazi = {
       enable = true;

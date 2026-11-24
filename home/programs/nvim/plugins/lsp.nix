@@ -13,11 +13,10 @@
         };
 
         pyright.enable = true;
-
-        markdown_oxide = {
-          enable = true;
-          config.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true;
-        };
+        ruff.enable = true; # Linting + quick fixes for python
+        clangd.enable = true;
+        nil_ls.enable = true;
+        ts_ls.enable = true;
       };
 
       # Keymaps that only apply once a language server attaches.
@@ -55,6 +54,7 @@
       ];
     };
 
-    diagnostic.settings.virtual_text = false;
+    # diagnostic.settings.virtual_text = false;
+    diagnostic.settings.virtual_text = true;
   };
 }

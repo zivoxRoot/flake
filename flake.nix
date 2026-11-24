@@ -60,6 +60,7 @@
       impermanence,
       claude-desktop,
       zen-browser,
+      nixvim,
       hyprland,
       obsidian-extensions,
       ...
