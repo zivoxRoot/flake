@@ -6,7 +6,7 @@
 
     settings = {
       general = {
-        lock_cmd = "qs ipc call lockscreen lock";
+        lock_cmd = "qs ipc call lockscreen immediateLock";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
@@ -23,7 +23,7 @@
         {
           # 5 minutes: Lock screen
           timeout = 300;
-          on-timeout = "qs ipc call lockscreen lock";
+          on-timeout = "qs ipc call lockscreen immediateLock";
         }
         {
           # 7 minutes: turn screen off
