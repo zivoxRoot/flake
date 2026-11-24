@@ -9,7 +9,7 @@ hl.on("hyprland.start", function ()
 
 	-- Desktop components
 	hl.exec_cmd("awww-daemon")
-	hl.exec_cmd("dunst")
+	-- hl.exec_cmd("dunst")
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("quickshell")
 	hl.exec_cmd("wl-paste --watch cliphist store")
