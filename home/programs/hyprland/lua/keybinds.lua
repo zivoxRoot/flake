@@ -28,20 +28,20 @@ end)
 --------- START QUICKSHELL IPC -----------
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("quickshell ipc call pill launcher"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("quickshell ipc call pill controlCenter"))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("quickshell ipc call container-management toggle"))
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call notifications-panel toggle"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("quickshell ipc call pill wifi"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("quickshell ipc call pill bluetooth"))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("quickshell ipc call pill volume"))
-hl.bind(mainMod .. " + SEMICOLON", hl.dsp.exec_cmd("quickshell ipc call emoji-picker toggle"))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("quickshell ipc call clipboard toggle"))
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("quickshell ipc call pill logoutMenu"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("quickshell ipc call pill wallpaperSwitcher"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call pill notifications"))
+hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("quickshell ipc call notifications toggleDnd"))
 --------- END QUICKSHELL IPC -----------
 
 -- Notifications
 -- hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop"))  -- Pop latest notification
-hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("dunstctl set-paused toggle")) -- Toggle do not disturb
-hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("dunstctl close-all")) -- Close all visible notifications
-hl.bind(mainMod .. " + ALT + N", hl.dsp.exec_cmd("dunstctl context")) -- Open the actions menu
+-- hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("dunstctl set-paused toggle")) -- Toggle do not disturb
+-- hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("dunstctl close-all")) -- Close all visible notifications
+-- hl.bind(mainMod .. " + ALT + N", hl.dsp.exec_cmd("dunstctl context")) -- Open the actions menu
 
 -- Move focus with mainMod + vim keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
