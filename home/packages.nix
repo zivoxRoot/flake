@@ -58,6 +58,9 @@
     openssl
     gh
     ripgrep
+    zoxide
+    eza
+    gomi
     fd
     glow
     bat

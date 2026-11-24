@@ -19,6 +19,7 @@
     ./programs/rofi
     ./programs/matugen
     ./programs/nvim
+    ./programs/zsh
 
     ./programs/bash.nix
     ./programs/git.nix
