@@ -24,6 +24,7 @@
     ./programs/bash.nix
     ./programs/git.nix
     ./programs/kitty.nix
+    ./programs/tmux.nix
     ./programs/hyprsunset.nix
     ./programs/mpv.nix
     ./programs/dunst.nix
