@@ -118,5 +118,11 @@
     # Games
     xonotic
     veloren
+
+    # Documentation
+    man-db
+    man-pages
+    man-pages-posix
+    linux-manual
   ];
 }

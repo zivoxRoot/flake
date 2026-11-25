@@ -14,6 +14,7 @@
     ../../modules/desktop/usb.nix
     ../../modules/desktop/gaming.nix
     ../../modules/desktop/overlay.nix
+    ../../modules/desktop/programming.nix
     ../../modules/desktop/zsh.nix
 
     ../../modules/services/bluetooth.nix
