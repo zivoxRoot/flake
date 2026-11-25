@@ -10,8 +10,9 @@
       {
         plugin = resurrect;
         extraConfig = ''
-          set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-strategy-vim 'session'
+          			set -g @resurrect-dir '$HOME/.local/share/tmux/resurrect'
+          			set -g @resurrect-capture-pane-contents 'on'
+          			set -g @resurrect-strategy-vim 'session'
         '';
       }
       {

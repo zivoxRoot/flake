@@ -34,6 +34,7 @@ hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("quickshell ipc call pill volume"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("quickshell ipc call pill logoutMenu"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("quickshell ipc call pill wallpaperSwitcher"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call pill notifications"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("quickshell ipc call edit-mode toggle"))
 hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("quickshell ipc call notifications toggleDnd"))
 --------- END QUICKSHELL IPC -----------
 
