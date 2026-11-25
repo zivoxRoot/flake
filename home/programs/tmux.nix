@@ -4,6 +4,7 @@
   programs.tmux = {
     enable = true;
     sensibleOnTop = false; # home-manager loads tmux-sensible by default; this keeps tmux vanilla
+    keyMode = "vi";
 
     plugins = with pkgs.tmuxPlugins; [
       {
