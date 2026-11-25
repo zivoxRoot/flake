@@ -8,6 +8,8 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
     history = {
       size = 10000;
@@ -19,63 +21,62 @@
       {
         name = "zsh-syntax-highlighting";
         src = pkgs.zsh-syntax-highlighting;
+        file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
       }
       {
         name = "zsh-autosuggestions";
         src = pkgs.zsh-autosuggestions;
-      }
-      {
-        name = "zsh-completions";
-        src = pkgs.zsh-completions;
+        file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
       }
     ];
 
     initContent = lib.mkMerge [
       (lib.mkOrder 550 ''
-        				fpath+=("${pkgs.pure-prompt}/share/zsh/site-functions")
+        							fpath+=("${pkgs.pure-prompt}/share/zsh/site-functions")
+        							 fpath+=("${pkgs.zsh-completions}/share/zsh/site-functions")
         			'')
       ''
-        			  # Zsh keybindings
-        			  bindkey '^[f' autosuggest-accept
-        			  bindkey '^N' history-search-forward
-        			  bindkey '^P' history-search-backward
-        			  # bindkey '^[l' forward-word
-        			  # bindkey '^[h' backward-word
+        					  # Zsh keybindings
+        					  bindkey '^[f' autosuggest-accept
+        					  bindkey '^N' history-search-forward
+        					  bindkey '^P' history-search-backward
+        					  # bindkey '^[l' forward-word
+        					  # bindkey '^[h' backward-word
 
-        			  # Zsh options
-        			  setopt autocd
-        			  setopt correct
+        					  # Zsh options
+        					  setopt autocd
+        					  setopt correct
 
-        			  # History
-        			  setopt appendhistory
-        			  setopt sharehistory
-        			  setopt hist_ignore_space
-        			  setopt hist_ignore_all_dups
-        			  setopt hist_save_no_dups
-        			  setopt hist_ignore_dups
-        			  setopt hist_find_no_dups
+        					  # History
+        					  setopt appendhistory
+        					  setopt sharehistory
+        					  setopt hist_ignore_space
+        					  setopt hist_ignore_all_dups
+        					  setopt hist_save_no_dups
+        					  setopt hist_ignore_dups
+        					  setopt hist_find_no_dups
 
-        			  # Function to create a directory and cd into it
-        			  mkcd() {
-        				mkdir -p -- "$1" && cd "$1"
-        			  }
+        					  # Function to create a directory and cd into it
+        					  mkcd() {
+        						mkdir -p -- "$1" && cd "$1"
+        					  }
 
-        			  # Completion styling
-        			  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        					  # Completion styling
+        					  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-        			  # FZF
-        			  source <(${pkgs.fzf}/bin/fzf --zsh)
+        					  # FZF
+        					  source <(${pkgs.fzf}/bin/fzf --zsh)
 
-        			  # Zoxide
-        			  eval "$(${pkgs.zoxide}/bin/zoxide init --cmd cd zsh)"
+        					  # Zoxide
+        					  eval "$(${pkgs.zoxide}/bin/zoxide init --cmd cd zsh)"
 
-        			  # Zsh autosuggestions
-        			  # source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-        			  # Zsh syntax highlighting
-        			  # source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        					  # Zsh autosuggestions
+        					  # source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        					  # Zsh syntax highlighting
+        					  # source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-        			  autoload -U promptinit; promptinit
-        			  prompt pure
+        					  autoload -U promptinit; promptinit
+        					  prompt pure
         			''
     ];
   };
