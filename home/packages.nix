@@ -43,7 +43,6 @@
     # CLI tools
     ffmpeg
     yt-dlp
-    kew
     imagemagick
     wf-recorder
     slurp

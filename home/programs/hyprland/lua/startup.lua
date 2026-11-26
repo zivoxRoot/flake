@@ -4,7 +4,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("librewolf")
 	hl.exec_cmd("kitty tmux attach", { workspace = 3 })
 	-- hl.exec_cmd("claude-desktop", { workspace = 4 })
-	hl.exec_cmd("kitty kew ~/Documents/sync/music", { workspace = 9 })
+	hl.exec_cmd("kitty rmpc", { workspace = 9 })
 	hl.exec_cmd("xdg-open obsidian://", { workspace = 10 })
 
 	-- Desktop components

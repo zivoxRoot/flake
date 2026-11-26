@@ -32,7 +32,7 @@
     ./programs/waybar.nix
     ./programs/hyprlock.nix
     ./programs/hypridle.nix
-    ./programs/mpd.nix
+    ./programs/music.nix
     ./programs/obsidian.nix
     ./programs/zen.nix
   ];
